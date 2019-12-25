@@ -7,10 +7,10 @@
  * Time: 15:01
  */
 
-namespace Enychan\IdentityCard;
+namespace Apichen\IdentityCard;
 
-use Enychan\IdentityCard\Exceptions\FormatException;
-use Enychan\IdentityCard\Exceptions\LangException;
+use Apichen\IdentityCard\Exceptions\FormatException;
+use Apichen\IdentityCard\Exceptions\LangException;
 
 class IdentityCard
 {

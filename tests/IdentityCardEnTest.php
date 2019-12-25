@@ -7,9 +7,9 @@
  * Time: 16:51
  */
 
-namespace Enychan\IdentityCard\Tests;
+namespace Apichen\IdentityCard\Tests;
 
-use Enychan\IdentityCard\IdentityCard;
+use Apichen\IdentityCard\IdentityCard;
 use PHPUnit\Framework\TestCase;
 
 class IdentityCardEnTest extends TestCase

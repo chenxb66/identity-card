@@ -7,7 +7,7 @@
  * Time: 11:38
  */
 
-namespace Enychan\IdentityCard\Exceptions;
+namespace Apichen\IdentityCard\Exceptions;
 
 class Exception extends \Exception
 {

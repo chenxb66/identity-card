@@ -1,5 +1,5 @@
 {
-    "name": "enychan/identity-card",
+    "name": "apichen/identity-card",
     "description": "A simple proof of identity card of the people's Republic of China.",
     "type": "library",
     "license": "MIT",
@@ -18,7 +18,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Enychan\\IdentityCard\\": "./src/"
+            "Apichen\\IdentityCard\\": "./src/"
         }
     },
     "minimum-stability": "dev"

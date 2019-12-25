@@ -7,7 +7,7 @@
  * Time: 15:08
  */
 
-namespace Enychan\IdentityCard\Exceptions;
+namespace Apichen\IdentityCard\Exceptions;
 
 class FormatException extends Exception
 {
