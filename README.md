@@ -3,7 +3,7 @@
 
 ## 安装
 ```shell
-$ composer require enychan/identity-card -vvv
+$ composer require apichen/identity-card -vvv
 ```
 
 ## 配置
@@ -13,7 +13,7 @@ $ composer require enychan/identity-card -vvv
 ```php
 <?php
 
-use Enychan\IdentityCard\IdentityCard;
+use Apichen\IdentityCard\IdentityCard;
 
 // 检查身份证 & 创建身份证对象
 $idCardObject = IdentityCard::make('xxxxxxxxxxxxxxxxxx', 'zh-cn');
