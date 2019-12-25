@@ -1,0 +1,25 @@
+{
+    "name": "chenxiaobo/identify-card",
+    "description": "A simple proof of identity card of the people's Republic of China.",
+    "type": "library",
+    "license": "MIT",
+    "homepage": "https://www.chenxiaobo.me",
+    "authors": [{
+        "name": "chenxiaobo",
+        "email": "346745114@qq.com",
+        "homepage": "https://www.chenxiaobo.me"
+    }],
+    "require": {
+        "php": ">=7.1",
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Enychan\\IdentityCard\\": "./src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
