@@ -1,5 +1,6 @@
 <?php
 /**
+ * 身份证分析
  * @author chenxb
  * @version 1.0.0
  * @changelog
@@ -23,7 +24,7 @@ class IdentityCard
     protected $idCard;
 
     /**
-     * 多语言
+     * 多语言包
      *
      * @var array
      */
@@ -38,11 +39,12 @@ class IdentityCard
     protected function __construct(string $idCard, string $lang = 'zh-cn')
     {
         $this->idCard = $idCard;
-
         $this->lang = require __DIR__ . "/Langs/{$lang}.php";
     }
 
     /**
+     * 字符串输出
+     *
      * @return string
      * @throws \Exception
      */
@@ -87,13 +89,6 @@ class IdentityCard
             return false;
         }
 
-        // 验证出生日期
-        $birthday = substr($idCard, 6, 8);
-        $rPattern = '/^((19[0-9]{2})|(20[0-9]{2}))((0[1-9]{1})|(1[012]{1}))((0[1-9]{1})|(1[0-9]{1})|(2[0-9]{1})|3[01]{1})$/';
-        if (!preg_match($rPattern, $birthday)) {
-            return false;
-        }
-
         // 验证省份
         $area = [
             11, 12, 13, 14, 15, 21, 22, 23, 31, 32, 33, 34, 35, 36, 37, 41, 42,
@@ -103,18 +98,24 @@ class IdentityCard
             return false;
         }
 
-        // 验证规则
+        // 验证出生日期
+        $birthday = substr($idCard, 6, 8);
+        $rPattern = '/^((19[0-9]{2})|(20[0-9]{2}))((0[1-9]{1})|(1[012]{1}))((0[1-9]{1})|(1[0-9]{1})|(2[0-9]{1})|3[01]{1})$/';
+        if (!preg_match($rPattern, $birthday)) {
+            return false;
+        }
+
+        // 身份证规则校验
         $wi = array(7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2);
         $vi = array('1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2');
         $ni = 0;
-        $value = (string)$idCard;
-        $len = strlen($value) - 1;
+        $len = strlen($idCard) - 1;
         for ($i = 0, $max = $len; $i < $max; $i++) {
-            $aiv = (int)($value[$i] ?: 0);
+            $aiv = (int)($idCard[$i] ?: 0);
             $wiv = (int)($wi[$i] ?: 0);
             $ni += ($aiv * $wiv);
         }
-        return (strcasecmp((string)($vi[$ni % 11]), (string)($value[$len])) === 0);
+        return (strcasecmp((string)($vi[$ni % 11]), (string)($idCard[$len])) === 0);
     }
 
     /**
@@ -125,7 +126,11 @@ class IdentityCard
      */
     public function getArea(string $separate = ' '): string
     {
-        return "{$this->getProvince()}{$separate}{$this->getCity()}{$separate}{$this->getCounty()}";
+        return implode($separate, [
+            $this->getProvince(),
+            $this->getCity(),
+            $this->getCounty()
+        ]);
     }
 
     /**
@@ -135,13 +140,13 @@ class IdentityCard
      */
     public function getProvince(): ?string
     {
-        $k = substr($this->idCard, 0, 2) . '0000';
+        $prefix = substr($this->idCard, 0, 2) . '0000';
 
-        if (!isset($this->lang['regions'][$k])) {
+        if (!isset($this->lang['regions'][$prefix])) {
             return null;
         }
 
-        return $this->lang['regions'][$k];
+        return $this->lang['regions'][$prefix];
     }
 
     /**
@@ -151,13 +156,13 @@ class IdentityCard
      */
     public function getCity(): ?string
     {
-        $k = substr($this->idCard, 0, 4) . '00';
+        $prefix = substr($this->idCard, 0, 4) . '00';
 
-        if (!isset($this->lang['regions'][$k])) {
+        if (!isset($this->lang['regions'][$prefix])) {
             return null;
         }
 
-        return $this->lang['regions'][$k];
+        return $this->lang['regions'][$prefix];
     }
 
     /**
@@ -167,13 +172,13 @@ class IdentityCard
      */
     public function getCounty(): ?string
     {
-        $k = substr($this->idCard, 0, 6);
+        $prefix = substr($this->idCard, 0, 6);
 
-        if (!isset($this->lang['regions'][$k])) {
+        if (!isset($this->lang['regions'][$prefix])) {
             return null;
         }
 
-        return $this->lang['regions'][$k];
+        return $this->lang['regions'][$prefix];
     }
 
     /**
