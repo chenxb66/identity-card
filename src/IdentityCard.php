@@ -85,7 +85,16 @@ class IdentityCard
     public static function check(string $idCard): bool
     {
         // 验证长度
-        if (!$idCard || strlen($idCard) != 18) {
+        if (strlen(strval($idCard)) != 18) {
+            return false;
+        }
+
+        // 验证出生日期
+        $currentDate = date('Y');
+        $year = intval(substr($idCard, 6, 4));
+        $month = intval(substr($idCard, 10, 2));
+        $day = intval(substr($idCard, 12, 2));
+        if ($year < 1900 || $year > $currentDate || $month < 1 || $month > 12 || $day < 1 || $day > 31) {
             return false;
         }
 
@@ -95,13 +104,6 @@ class IdentityCard
             43, 44, 45, 46, 50, 51, 52, 53, 54, 61, 62, 63, 64, 65, 71, 81, 82, 91
         ];
         if (array_search(substr($idCard, 0, 2), $area) === false) {
-            return false;
-        }
-
-        // 验证出生日期
-        $birthday = substr($idCard, 6, 8);
-        $rPattern = '/^((19[0-9]{2})|(20[0-9]{2}))((0[1-9]{1})|(1[012]{1}))((0[1-9]{1})|(1[0-9]{1})|(2[0-9]{1})|3[01]{1})$/';
-        if (!preg_match($rPattern, $birthday)) {
             return false;
         }
 
