@@ -1,6 +1,6 @@
 {
     "name": "apichen/identity-card",
-    "description": "A simple proof of identity card of the people's Republic of China.",
+    "description": "Analysis of ID card in mainland China.",
     "type": "library",
     "license": "MIT",
     "homepage": "https://www.chenxiaobo.me",

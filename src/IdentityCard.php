@@ -39,7 +39,7 @@ class IdentityCard
     protected function __construct(string $idCard, string $lang = 'zh-cn')
     {
         $this->idCard = $idCard;
-        $this->lang = require __DIR__ . "/Langs/{$lang}.php";
+        $this->lang = require __DIR__ . "/Resources/Lang/{$lang}.php";
     }
 
     /**
@@ -90,11 +90,10 @@ class IdentityCard
         }
 
         // 验证出生日期
-        $currentDate = date('Y');
         $year = intval(substr($idCard, 6, 4));
         $month = intval(substr($idCard, 10, 2));
         $day = intval(substr($idCard, 12, 2));
-        if ($year < 1900 || $year > $currentDate || $month < 1 || $month > 12 || $day < 1 || $day > 31) {
+        if (!checkdate($month, $day, $year)) {
             return false;
         }
 
