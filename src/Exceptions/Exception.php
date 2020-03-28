@@ -7,9 +7,8 @@
  * Time: 11:38
  */
 
-namespace Apichen\IdentityCard\Exceptions;
+namespace Chenxb\IdentityCard\Exceptions;
 
 class Exception extends \Exception
 {
-
 }

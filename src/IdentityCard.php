@@ -8,10 +8,10 @@
  * Time: 15:01
  */
 
-namespace Apichen\IdentityCard;
+namespace Chenxb\IdentityCard;
 
-use Apichen\IdentityCard\Exceptions\FormatException;
-use Apichen\IdentityCard\Exceptions\LangException;
+use Chenxb\IdentityCard\Exceptions\FormatException;
+use Chenxb\IdentityCard\Exceptions\LangException;
 
 class IdentityCard
 {
@@ -93,7 +93,7 @@ class IdentityCard
         $year = intval(substr($idCard, 6, 4));
         $month = intval(substr($idCard, 10, 2));
         $day = intval(substr($idCard, 12, 2));
-        if (!checkdate($month, $day, $year)) {
+        if (!@checkdate($month, $day, $year)) {
             return false;
         }
 

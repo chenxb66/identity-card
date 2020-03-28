@@ -1,5 +1,5 @@
 {
-    "name": "apichen/identity-card",
+    "name": "chenxb/identity-card",
     "description": "Analysis of ID card in mainland China.",
     "type": "library",
     "license": "MIT",
@@ -18,7 +18,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Apichen\\IdentityCard\\": "./src/"
+            "Chenxb\\IdentityCard\\": "./src/"
         }
     },
     "minimum-stability": "dev"

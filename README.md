@@ -3,7 +3,7 @@
 
 ## 安装
 ```shell
-$ composer require apichen/identity-card -vvv
+$ composer require chenxb/identity-card -vvv
 ```
 
 ## 配置
@@ -13,18 +13,13 @@ $ composer require apichen/identity-card -vvv
 ```php
 <?php
 
-use Apichen\IdentityCard\IdentityCard;
+use Chenxb\IdentityCard\IdentityCard;
 
-// 检查身份证 & 创建身份证对象
+// 只检查身份证
+IdentityCard::check("xxxxxxxxxxxxxxxxxxxxx");
+
+// 检查身份证 & 并且分析身份信息
 $idCardObject = IdentityCard::make('xxxxxxxxxxxxxxxxxx', 'zh-cn');
-```
-
-### 内置函数
-```php
-<?php
-
-IdentityCard::check($idCard); // 检查身份证格式
-
 $idCardObject->getArea();  //获取获取身份证所在省市县
 $idCardObject->getProvince();   // 获取省份
 $idCardObject->getCity(); // 获取城市

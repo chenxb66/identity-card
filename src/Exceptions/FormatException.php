@@ -7,9 +7,8 @@
  * Time: 15:08
  */
 
-namespace Apichen\IdentityCard\Exceptions;
+namespace Chenxb\IdentityCard\Exceptions;
 
 class FormatException extends Exception
 {
-
 }
